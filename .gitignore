@@ -1,0 +1,23 @@
+# Arquivos do ambiente virtual
+venv/
+.env
+
+# Arquivos gerados pelo Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos de log
+*.log
+
+# Arquivos de saída/dados baixados
+output/
+anexos/
+
+# IDE/Editores
+.vscode/
+.idea/
+
+# Sistemas operacionais
+.DS_Store  # Mac
+Thumbs.db  # Windows
