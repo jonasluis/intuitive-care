@@ -1,3 +1,8 @@
+import pdfplumber
+import pandas as pd
+import zipfile
+import os
+
 class PdfDataTransformer:
     def __init__(self, pdf_path, output_csv, output_zip):
         self.pdf_path = pdf_path
@@ -27,3 +32,15 @@ class PdfDataTransformer:
         df = df.replace(self.abreviacoes)
         df.to_csv(self.output_csv, index=False, encoding="utf-8")
         print(f"CSV salvo como: {self.output_csv}")
+
+    def compactar_csv(self):
+        """Compacta o CSV em um arquivo ZIP."""
+        with zipfile.ZipFile(self.output_zip, 'w', zipfile.ZIP_DEFLATED) as zipf:
+            zipf.write(self.output_csv)
+        os.remove(self.output_csv)
+        print(f"Arquivo ZIP criado: {self.output_zip}")
+
+    def executar(self):
+        """Executa todo o processo."""
+        self.transformar_dados()
+        self.compactar_csv()
