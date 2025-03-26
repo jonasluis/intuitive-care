@@ -8,6 +8,7 @@ pdfs/
 # Ignorar o arquivo anexo.zip
 anexos.zip
 /Teste_SeuNome.zip
+/Teste_Jonas_Luis.zip
 
 # Arquivos gerados pelo Python
 __pycache__/
