@@ -5,6 +5,9 @@ venv/
 #pasta  os pdfs
 pdfs/
 
+# Ignorar o arquivo anexo.zip
+anexo.zip
+
 # Arquivos gerados pelo Python
 __pycache__/
 *.py[cod]
