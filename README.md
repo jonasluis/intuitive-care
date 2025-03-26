@@ -1,46 +1,4 @@
-# Soluções do Teste Técnico
-
-Este repositório contém soluções para um teste técnico, divididas em quatro branches separadas. Cada branch corresponde a uma implementação específica de teste.
-
-## 🌳 Estrutura de Branches
-
-- `main` - Branch principal com documentação base
-- `teste-01` - Implementação de Web Scraping
-- `teste-02` - Transformação de Dados
-- `teste-03` - Banco de dados
-- `teste-04` - API
-
-### Configuração do Git
-
-1. **Clone o Repositório**
-```bash
-git clone git@github.com:jonasluis/intuitive-care.git
-cd intuitive-care
-```
-
-2. **Atualize as Referências Remotas**
-```bash
-git fetch --all
-```
-
-3. **Visualize Todas as Branches**
-```bash
-git branch -a
-```
-
-4. **Configure as Branches Locais**
-```bash
-git checkout -b teste-01 origin/teste-01
-git checkout -b teste-02 origin/teste-02
-git checkout -b teste-03 origin/teste-03
-git checkout -b teste-04 origin/teste-04
-```
-4. **Verificar as Branchs Locais**
-```bash
-git branch
-```
-
-## Teste 01: Web Scraping de PDFs
+# Teste 01: Web Scraping de PDFs
 
 O primeiro teste implementa um web scraper automatizado para coletar PDFs do site destinado.
 
@@ -109,6 +67,7 @@ requests==2.31.0
 ```env
 # URL base do site da ANS
 BASE_URL=[cole_URL]
+```
 
 ### Execução do Projeto
 
