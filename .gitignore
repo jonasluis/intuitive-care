@@ -6,7 +6,7 @@ venv/
 pdfs/
 
 # Ignorar o arquivo anexo.zip
-anexo.zip
+anexos.zip
 
 # Arquivos gerados pelo Python
 __pycache__/
