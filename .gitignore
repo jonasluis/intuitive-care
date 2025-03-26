@@ -2,6 +2,9 @@
 venv/
 .env
 
+#pasta  os pdfs
+pdfs/
+
 # Arquivos gerados pelo Python
 __pycache__/
 *.py[cod]
