@@ -14,8 +14,8 @@ Este repositório contém soluções para um teste técnico, divididas em quatro
 
 1. **Clone o Repositório**
 ```bash
-git clone <url-do-repositorio>
-cd <nome-do-repositorio>
+git clone git@github.com:jonasluis/intuitive-care.git
+cd intuitive-care
 ```
 
 2. **Atualize as Referências Remotas**
@@ -34,6 +34,10 @@ git checkout -b teste-01 origin/teste-01
 git checkout -b teste-02 origin/teste-02
 git checkout -b teste-03 origin/teste-03
 git checkout -b teste-04 origin/teste-04
+```
+4. **Verificar as Branchs Locais**
+```bash
+git branch
 ```
 
 ## Teste 01: Web Scraping de PDFs
@@ -99,12 +103,14 @@ charset-normalizer==3.4.1
 python-dotenv==1.0.0
 requests==2.31.0
 ```
+3. **Configurar Variáveis de Ambiente**
+   Crie um arquivo `.env` na raiz do projeto com as seguintes variável:
+
+```env
+# URL base do site da ANS
+BASE_URL=[cole_URL]
 
 ### Execução do Projeto
-
-1. **Configurar Variáveis de Ambiente**
-   - Copie o arquivo `.env.example` para `.env`
-   - Ajuste as variáveis conforme necessário
 
 2. **Executar o Scraper**
 ```bash
