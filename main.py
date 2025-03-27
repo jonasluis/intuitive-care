@@ -1,26 +1,22 @@
 from scraper import Scraper
 from downloader import Downloader
-from compressor import Compressor
-from data_transformer import PdfDataTransformer
+from config import FINANCIAL_DATA_URL, OPERATORS_DATA_URL, BASE_URL
+from ftp_downloader import FTPDownloader
 
 def main():
-    # 1. Coletar os links dos PDFs
-    scraper = Scraper()
+    # Baixa os PDFs do site da ANS
+    scraper = Scraper(BASE_URL)
     pdf_links = scraper.get_pdf_links()
-
-    # 2. Baixar os PDFs
     downloader = Downloader(pdf_links)
     downloader.download_pdfs()
 
-    # 3. Compactar os arquivos baixados
-    compressor = Compressor()
-    compressor.create_zip()
+    # Baixa as demonstrações financeiras dos últimos 2 anos
+    financial_downloader = FTPDownloader(FINANCIAL_DATA_URL)
+    financial_downloader.download_financial_data()
 
-    pdf_path = "pdfs/Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf"
-    output_csv = "dados_transformados.csv"
-    output_zip = "Teste_Jonas_Luis.zip"
-    transformer = PdfDataTransformer(pdf_path, output_csv, output_zip)
-    transformer.executar()
+    # Baixa os dados das operadoras de saúde ativas
+    operators_downloader = FTPDownloader(OPERATORS_DATA_URL)
+    operators_downloader.download_operators_data()
 
-if __name__ == "__main__":
+if __name__ == '__main__':
     main()
