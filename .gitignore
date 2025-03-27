@@ -9,6 +9,9 @@ pdfs/
 anexos.zip
 /Teste_SeuNome.zip
 /Teste_Jonas_Luis.zip
+financial_data/
+operators_data/
+
 
 # Arquivos gerados pelo Python
 __pycache__/
