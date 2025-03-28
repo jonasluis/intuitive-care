@@ -39,7 +39,8 @@ O primeiro teste implementa um web scraper automatizado para coletar PDFs do sit
 **Windows:**
 ```bash
 python -m venv venv
-venv\Scripts\activate
+.\venv\Scripts\activate    # CMD
+.\venv\Scripts\Activate.ps1 # PowerShell
 ```
 
 **Linux/macOS:**
@@ -66,7 +67,7 @@ requests==2.31.0
 
 ```env
 # URL base do site da ANS
-BASE_URL=[cole_URL]
+BASE_URL="[cole_URL]"
 ```
 
 ### Execução do Projeto
