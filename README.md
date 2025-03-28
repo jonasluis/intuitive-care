@@ -60,6 +60,11 @@ source venv/bin/activate
 ```bash
 pip install -r requirements.txt
 ```
+**Caso o requirements.txt não funcione**
+
+```bash
+pip install --only-binary :all: beautifulsoup4 charset-normalizer python-dotenv requests pandas pdfplumber tabula-py openpyxl PyPDF2
+```
 
 ### Dependências
 
@@ -80,7 +85,7 @@ PyPDF2==3.0.1
 
 ```env
 # URL base do site da ANS
-BASE_URL=[inserir_URL]
+BASE_URL="[inserir_URL]"
 ```
 
 ### Executando o Projeto
