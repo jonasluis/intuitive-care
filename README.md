@@ -26,14 +26,24 @@ source venv/bin/activate
 ```bash
 pip install -r backend/requirements.txt
 ```
+**Caso o requirements.txt não funcione**
+
+```bash
+pip install --only-binary :all: beautifulsoup4 charset-normalizer python-dotenv requests pandas pdfplumber tabula-py openpyxl PyPDF2
+```
+
+```bash
+pip install fastapi uvicorn
+pip install mysql-connector-python
+```
 
 3. **Configurar variáveis de ambiente**
 
 Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
 ```
-BASE_URL=[Cole_url_aqui]
-OPERATORS_DATA_URL=[cole_url_aqui_operadoras_ativas]
-FINANCIAL_DATA_URL=[cole_url_aqui_demontracoes_contabeis]
+BASE_URL="[Cole_url_aqui]"
+OPERATORS_DATA_URL="[cole_url_aqui_operadoras_ativas]"
+FINANCIAL_DATA_URL="[cole_url_aqui_demontracoes_contabeis]
 ```
 
 ### Frontend
