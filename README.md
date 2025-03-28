@@ -42,9 +42,9 @@ Este projeto implementa ferramentas automatizadas para coleta, processamento e a
 
 3. Crie e configure as variáveis de ambiente no arquivo `.env`:
 ```
-BASE_URL=[Cole_url_aqui]
-OPERATORS_DATA_URL=[cole_url_aqui_operadoras_ativas]
-FINANCIAL_DATA_URL=[cole_url_aqui_demontracoes_contabeis]
+BASE_URL="[Cole_url_aqui]"
+OPERATORS_DATA_URL="[cole_url_aqui_operadoras_ativas]"
+FINANCIAL_DATA_URL="[cole_url_aqui_demontracoes_contabeis]"
 ```
 
 ### Executando o Projeto
