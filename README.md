@@ -63,8 +63,9 @@ O projeto foi desenvolvido utilizando **Python**, devido à sua eficiência em m
 
 ---
 
-4️⃣ API (FastAPI + Vue.js)
-Objetivo: Desenvolver uma interface web simples utilizando Vue.js que interaja com um servidor em FastAPI, permitindo realizar buscas textuais nos registros das operadoras cadastradas.
+### 4️⃣ API (FastAPI + Vue.js)
+
+**Objetivo:** Desenvolver uma interface web simples utilizando Vue.js que interaja com um servidor em FastAPI, permitindo realizar buscas textuais nos registros das operadoras cadastradas.
 
 #### 📌 Passos:
 1. **Preparação dos Dados:**
