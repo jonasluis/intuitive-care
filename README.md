@@ -1,21 +1,6 @@
-# Intuitive Care - Sistema de Busca de Operadoras de Saúde
+# Teste 04: API
 
 Este projeto consiste em um sistema para coleta, processamento e visualização de dados de operadoras de saúde da ANS (Agência Nacional de Saúde Suplementar). O sistema é dividido em backend (Python/FastAPI) e frontend (Vue.js).
-
-## Requisitos
-
-- Python 3.8 ou superior
-- Node.js 14 ou superior
-- npm ou yarn
-- Conexão com a internet para download dos dados
-
-## Download do Projeto
-
-```bash
-# Clone o repositório
-git clone [URL_DO_REPOSITORIO]
-cd intuitive-care
-```
 
 ## Configuração do Ambiente
 
