@@ -124,7 +124,6 @@ A imagem abaixo mostra a interface de busca de operadoras de saúde, onde é pos
 
 ### Diretórios de Dados
 
-- **dataset/**: Armazena os dados processados (CSV)
 - **pdfs/**: Armazena os PDFs baixados
 - **financial_data/**: Armazena os dados financeiros baixados
 - **operators_data/**: Armazena os dados de operadoras baixados
@@ -155,6 +154,5 @@ A imagem abaixo mostra a interface de busca de operadoras de saúde, onde é pos
 
 ### Frontend
 - Vue.js 3
-- Vuetify (componentes UI)
 - Axios (requisições HTTP)
 - Vite (bundler)
