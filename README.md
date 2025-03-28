@@ -133,11 +133,10 @@ Todos os pacotes necessários estão listados em `requirements.txt`. As principa
 
 O projeto gera:
 
-1. PDFs baixados em `data/pdfs/`
-2. Dados financeiros processados em `data/financial_data/`
-3. Informações das operadoras em `data/operators_data/`
-4. Logs detalhados de execução em `logs/`
-5. Arquivos compactados em `data/archives/`
+1. PDFs baixados em `pdfs/`
+2. Dados financeiros processados em `financial_data/`
+3. Informações das operadoras em `operators_data/`
+4. Logs detalhados de execução em `Terminal`
 
 ## 📊 Análise de Dados
 
