@@ -138,15 +138,6 @@ project/
     
 3. **Instale as dependências Python**
     
-    Método 1 - Usando requirements.txt:
-    
-    ```bash
-    pip install -r requirements.txt
-    
-    ```
-    
-    Método 2 - Instalação manual (caso o requirements.txt não funcione):
-    
     ```bash
     # Instale as bibliotecas principais
     pip install --only-binary :all: beautifulsoup4 charset-normalizer python-dotenv requests pandas  tabula-py openpyxl PyPDF2
