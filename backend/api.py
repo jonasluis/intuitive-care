@@ -26,7 +26,7 @@ class Operadora(BaseModel):
 # Carregar os dados das operadoras
 import os
 import unicodedata
-base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+base_dir = os.path.dirname(os.path.abspath(__file__))
 csv_path = os.path.join(base_dir, 'operators_data', 'Relatorio_cadop.csv')
 operators_df = pd.read_csv(csv_path, sep=';', encoding='utf-8')
 
