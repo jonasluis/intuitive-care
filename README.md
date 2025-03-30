@@ -13,6 +13,8 @@ Este projeto consiste em quatro implementações principais, cada uma focando em
 
 ## 🛠️ Stack Tecnológica
 
+O projeto foi desenvolvido utilizando Python, devido à sua eficiência em manipulação de dados e web scraping.
+
 - **Backend**:
     - Python 3.x
     - FastAPI
@@ -183,22 +185,23 @@ Você pode executar diferentes partes do processo de coleta de dados individualm
     
     Isso irá coletar PDFs do site da ANS. e compactar em um .zip
     
-2. **Apenas Web Scraping**
+2. **Transformação de Dados**
     
     ```bash
     python main.py transformar_dados
     
     ```
     
-    Isso irá coletar PDFs do site da ANS. e compactar em um .zip
+    Isso extrair dados da tabelas rol e eventos do pdf anexo 1 e compactar o csv gerado em um  Teste_Jonas_luis.zip.
+
 3. **Apenas Download de Dados Financeiros**
     
     ```bash
     python main.py download-financial
     
     ```
+    Isso irá baixar dados dos ultimos 2 anos
     
-    Isso extrair dados da tabelas rol e eventos do pdf anexo 1 e compactar o csv gerado em um  Teste_Jonas_luis.zip.
     
 4. **Apenas Download de Dados das Operadoras**
     
@@ -243,7 +246,7 @@ Acesse a interface em `http://localhost:5173`
 
 ## 🔍 Funcionalidades
 
-### 1. Web Scraping (Branch: teste-01)
+### 1. Web Scraping 
 
 - Coleta automatizada de PDFs do site da ANS
 - Identificação inteligente de documentos
@@ -251,7 +254,7 @@ Acesse a interface em `http://localhost:5173`
 - Verificação de integridade de arquivos
 - Compressão automatizada
 
-### 2. Transformação de Dados (Branch: teste-02)
+### 2. Transformação de Dados 
 
 - Extração de dados de PDFs
 - Reconhecimento de estrutura de tabelas
@@ -259,7 +262,7 @@ Acesse a interface em `http://localhost:5173`
 - Conversão para CSV
 - Compressão automatizada
 
-### 3. Operações de Banco de Dados (Branch: teste-03)
+### 3. Operações de Banco de Dados 
 
 - Armazenamento de dados financeiros
 - Gerenciamento de informações das operadoras de saúde
@@ -267,7 +270,7 @@ Acesse a interface em `http://localhost:5173`
 - Análise de tendências de mercado
 - Avaliações de conformidade
 
-### 4. API & Interface (Branch: teste-04)
+### 4. API & Interface
 
 - Endpoints RESTful
 - Busca em tempo real de operadoras
@@ -299,7 +302,6 @@ A documentação completa da API está disponível na coleção do Postman inclu
 - 📱 Telefone: 21 964655190
 - 💼 LinkedIn: [linkedin.com/in/jonasluisds/](https://linkedin.com/in/jonasluisds/)
 - 📧 Email: [jonasluis66@gmail.com](mailto:jonasluis66@gmail.com)
-![Interface de Busca de Operadoras](./images/operadoras_search.png)
 
 
 
