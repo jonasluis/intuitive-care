@@ -1,0 +1,131 @@
+{
+  "info": {
+    "_postman_id": "e5a9e8a0-5b1e-4b1e-8b1e-5b1e4b1e8b1e",
+    "name": "Operadoras de Saúde API",
+    "description": "Coleção para demonstrar a API de busca de operadoras de saúde",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Buscar Operadoras (PT-BR)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/buscar?nome=Amil",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "nome",
+              "value": "Amil",
+              "description": "Termo de busca para encontrar operadoras"
+            }
+          ]
+        },
+        "description": "Endpoint em português para buscar operadoras de saúde por nome, razão social, registro ANS ou CNPJ"
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Operadoras (EN)",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/operators/search?q=Unimed",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "operators",
+            "search"
+          ],
+          "query": [
+            {
+              "key": "q",
+              "value": "Unimed",
+              "description": "Termo de busca para encontrar operadoras"
+            }
+          ]
+        },
+        "description": "Endpoint em inglês para buscar operadoras de saúde por nome, razão social, registro ANS ou CNPJ"
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar Operadora Específica",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/buscar?nome=326305",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "nome",
+              "value": "326305",
+              "description": "Busca pelo número de registro ANS"
+            }
+          ]
+        },
+        "description": "Busca uma operadora específica pelo seu número de registro ANS"
+      },
+      "response": []
+    },
+    {
+      "name": "Buscar por Modalidade",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://127.0.0.1:8000/buscar?nome=Medicina de Grupo",
+          "protocol": "http",
+          "host": [
+            "127",
+            "0",
+            "0",
+            "1"
+          ],
+          "port": "8000",
+          "path": [
+            "buscar"
+          ],
+          "query": [
+            {
+              "key": "nome",
+              "value": "Medicina de Grupo",
+              "description": "Busca por modalidade de operadora"
+            }
+          ]
+        },
+        "description": "Busca operadoras por sua modalidade (ex: Medicina de Grupo, Odontologia de Grupo, etc)"
+      },
+      "response": []
+    }
+  ]
+}

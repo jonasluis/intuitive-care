@@ -1,133 +1,158 @@
-# 📌 Soluções do Teste Técnico
+# Teste 04: API
 
-Este repositório contém soluções para um teste técnico, divididas em quatro branches separadas. Cada branch corresponde a uma implementação específica.
+Este projeto consiste em um sistema para coleta, processamento e visualização de dados de operadoras de saúde da ANS (Agência Nacional de Saúde Suplementar). O sistema é dividido em backend (Python/FastAPI) e frontend (Vue.js).
 
-## 🌳 Estrutura de Branches
+## Configuração do Ambiente
 
-- `main` - Branch principal com documentação base
-- `teste-01` - Implementação de Web Scraping
-- `teste-02` - Transformação de Dados
-- `teste-03` - Banco de Dados
-- `teste-04` - API
+### Backend
 
-## 🔧 Tecnologias Utilizadas
+1. **Criar e ativar ambiente virtual Python**
 
-O projeto foi desenvolvido utilizando **Python**, devido à sua eficiência em manipulação de dados e web scraping. As principais bibliotecas utilizadas são:
-
-- **Web Scraping:** `requests`, `BeautifulSoup`
-- **Manipulação de PDFs:** `PyPDF2`, `pdfplumber`
-- **Transformação de Dados:** `pandas`
-- **Compactação de Arquivos:** `zipfile`
-- **Banco de Dados:** `MySQL`
-
----
-
-## 📂 Detalhamento das Soluções
-
-### 1️⃣ Web Scraping (Python)
-
-**Objetivo:** Baixar os anexos I e II da página da ANS e compactá-los.
-
-#### 📌 Passos:
-1. Acessar o site da ANS e identificar os links dos PDFs.
-2. Baixar os arquivos utilizando `requests` e `BeautifulSoup`.
-3. Compactar os arquivos em um `.zip`.
-
----
-
-### 2️⃣ Transformação de Dados (Python)
-
-**Objetivo:** Extrair os dados do Anexo I, salvar em CSV e compactar.
-
-#### 📌 Passos:
-1. Extrair tabelas do PDF utilizando `pdfplumber`.
-2. Salvar os dados estruturados em um arquivo CSV com `pandas`.
-3. Substituir abreviações nas colunas OD e AMB pelas descrições completas.
-4. Compactar o CSV utilizando `zipfile`.
-
----
-
-### 3️⃣ Banco de Dados
-
-**Objetivo:** Criar um banco para armazenar dados financeiros das operadoras.
-
-#### 📌 Passos:
-
-1. **Baixar os arquivos CSV e demonstrativos contábeis** dos últimos 2 anos.
-2. **Criar scripts SQL** para:
-    - Estruturar tabelas.
-    - Importar os dados corretamente.
-3. **Criar queries analíticas** para:
-    - Listar as 10 operadoras com maiores despesas no último trimestre.
-    - Listar as 10 operadoras com maiores despesas no último ano.
-
----
-
-### 4️⃣ API (FastAPI + Vue.js)
-
-**Objetivo:** Desenvolver uma interface web simples utilizando Vue.js que interaja com um servidor em FastAPI, permitindo realizar buscas textuais nos registros das operadoras cadastradas.
-
-#### 📌 Passos:
-1. **Preparação dos Dados:**
-  - Utilizar o CSV gerado na etapa de Banco de Dados (item 3.2.) contendo os cadastros das operadoras.
-
-2. **Desenvolvimento da API (FastAPI):**
-  - Criar um servidor com FastAPI e uma rota RESTful que:
-  - Receba uma string de busca como parâmetro.
-  - Filtre os registros no CSV para encontrar as operadoras mais relevantes.
-  - Retorne os resultados em formato JSON.
-
-3. **Interface Web (Vue.js):**
-  - Criar um frontend simples para interagir com a API.
-  - Permitir a digitação de um termo de busca e exibir os resultados na tela.
-
-4. **Testes e Demonstração:**
-  - Criar uma coleção no Postman para demonstrar requisições à API.
-  - Incluir exemplos de chamadas e respostas no formato JSON.
-
----
-
-## ⚙️ Configuração do Git
-
-1. **Clone o Repositório**
+**Windows:**
 ```bash
-git clone git@github.com:jonasluis/intuitive-care.git
-cd intuitive-care
+python -m venv venv
+venv\Scripts\activate
+# ou
+.\venv\Scripts\activate.ps1 (PowerShell)
 ```
 
-2. **Baixe todas as branches do repositório remoto**
+**Linux/macOS:**
 ```bash
-git fetch --all
+python3 -m venv venv
+source venv/bin/activate
 ```
 
-3. **Visualize Todas as Branches**
+2. **Instalar dependências**
 ```bash
-git branch -a
+pip install -r backend/requirements.txt
+```
+**Caso o requirements.txt não funcione**
+
+```bash
+pip install --only-binary :all: beautifulsoup4 charset-normalizer python-dotenv requests pandas pdfplumber tabula-py openpyxl PyPDF2
 ```
 
-4. **Configure as Branches Locais**
 ```bash
-git checkout -b teste-01 origin/teste-01
-git checkout -b teste-02 origin/teste-02
-git checkout -b teste-03 origin/teste-03
-git checkout -b teste-04 origin/teste-04
+pip install fastapi uvicorn
+pip install mysql-connector-python
 ```
 
-5. **Verificar as Branches Locais**
-```bash
-git branch
+3. **Configurar variáveis de ambiente**
+
+Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
+```
+BASE_URL="[Cole_url_aqui]"
+OPERATORS_DATA_URL="[cole_url_aqui_operadoras_ativas]"
+FINANCIAL_DATA_URL="[cole_url_aqui_demontracoes_contabeis]
 ```
 
----
+### Frontend
 
-## 📬 Contato
+1. **Instalar dependências**
+```bash
+cd frontend
+npm install
+# ou
+yarn install
+```
 
-Agradeço a oportunidade de realizar este teste técnico. 
+## Execução do Projeto
 
-📞 Telefone: 21 964655190
-🔗 LinkedIn: linkedin.com/in/jonasluisds/
-📧 E-mail: jonasluis66@gmail.com
+### Backend
 
----
+1. **Executar o script principal para coleta de dados**
 
-🔗 **Autor:** Jonas Luis
+Este script faz o download dos PDFs do site da ANS, dados financeiros e dados de operadoras ativas.
+
+```bash
+python main.py
+```
+
+2. **Iniciar o servidor API**
+
+```bash
+python backend/run_api.py
+```
+
+O servidor API estará disponível em: http://127.0.0.1:8000
+
+Endpoints disponíveis:
+- `/buscar?nome={termo}` - Busca operadoras pelo nome
+
+### Frontend
+
+```bash
+cd frontend
+npm run dev
+# ou
+yarn dev
+```
+
+O frontend estará disponível em: http://localhost:5173
+
+## Screenshots
+
+### Interface de Busca de Operadoras
+
+A imagem abaixo mostra a interface de busca de operadoras de saúde, onde é possível pesquisar por nome e visualizar informações como Registro ANS, CNPJ, Razão Social, Nome Fantasia e Modalidade.
+
+![Interface de Busca de Operadoras](./images/operadoras_search.png)
+
+## Estrutura do Projeto
+
+### Backend
+
+- **main.py**: Ponto de entrada principal que orquestra o processo de coleta de dados
+- **api.py**: Implementação da API FastAPI para busca de operadoras
+- **run_api.py**: Script para iniciar o servidor API
+- **config.py**: Configurações e variáveis de ambiente
+- **scraper.py**: Classe para web scraping do site da ANS
+- **downloader.py**: Classe para download de arquivos PDF
+- **ftp_downloader.py**: Classe para download de arquivos via FTP
+- **data_transformer.py**: Processamento e transformação dos dados baixados
+- **compressor.py**: Compressão de arquivos
+- **database/**: Scripts SQL para operações de banco de dados
+  - **create_tables.sql**: Criação do esquema do banco de dados
+  - **import_and_analyze.sql**: Queries de importação e análise de dados
+
+### Frontend
+
+- **src/App.vue**: Componente principal da aplicação Vue
+- **src/main.js**: Ponto de entrada do frontend, configuração do Vue e Vuetify
+- **index.html**: Página HTML principal
+- **vite.config.js**: Configuração do Vite (bundler)
+
+### Diretórios de Dados
+
+- **pdfs/**: Armazena os PDFs baixados
+- **financial_data/**: Armazena os dados financeiros baixados
+- **operators_data/**: Armazena os dados de operadoras baixados
+
+## Fluxo de Funcionamento
+
+1. O script `main.py` inicia o processo de coleta de dados:
+   - Faz scraping do site da ANS para obter links de PDFs
+   - Baixa os PDFs relevantes
+   - Baixa dados financeiros via FTP
+   - Baixa dados de operadoras ativas via FTP
+
+2. Os dados são processados e transformados para o formato adequado
+
+3. A API FastAPI disponibiliza endpoints para consulta dos dados
+
+4. O frontend Vue.js consome a API e apresenta uma interface amigável para busca de operadoras
+
+## Tecnologias Utilizadas
+
+### Backend
+- Python
+- FastAPI
+- BeautifulSoup4 (web scraping)
+- Pandas (processamento de dados)
+- FTPLib (download via FTP)
+- Requests (requisições HTTP)
+
+### Frontend
+- Vue.js 3
+- Axios (requisições HTTP)
+- Vite (bundler)
