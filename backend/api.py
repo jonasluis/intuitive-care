@@ -1,8 +1,11 @@
-from fastapi import FastAPI, Query
+from fastapi import FastAPI, Query, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 import pandas as pd
-from typing import List
-from pydantic import BaseModel
+from typing import List, Optional
+from pydantic import BaseModel, validator
+import os
+import unicodedata
+import math
 
 app = FastAPI()
 
@@ -19,14 +22,18 @@ class Operadora(BaseModel):
     registro_ans: str
     cnpj: str
     razao_social: str
-    nome_fantasia: str
+    nome_fantasia: Optional[str] = None  # Make this field optional
     modalidade: str
     uf: str
 
+    @validator('nome_fantasia', pre=True)
+    def handle_nan(cls, v):
+        if pd.isna(v):  # Handle NaN values
+            return None
+        return v
+
 # Carregar os dados das operadoras
-import os
-import unicodedata
-base_dir = os.path.dirname(os.path.abspath(__file__))
+base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 csv_path = os.path.join(base_dir, 'operators_data', 'Relatorio_cadop.csv')
 operators_df = pd.read_csv(csv_path, sep=';', encoding='utf-8')
 
@@ -46,19 +53,20 @@ print("Colunas disponíveis:", operators_df.columns.tolist())
 
 @app.get("/operadoras/buscar", response_model=List[Operadora])
 async def buscar_operadoras_por_termo(q: str = Query(..., min_length=1)):
-    # Converter consulta de busca para minúsculas para pesquisa sem distinção entre maiúsculas e minúsculas
     query = q.lower()
     
-    # Pesquisar em colunas relevantes
-    # Converter colunas para tipo string antes de aplicar operações de string
-    mask = operators_df['Razao_Social'].astype(str).str.lower().str.contains(query, na=False) |\
-           operators_df['Nome_Fantasia'].astype(str).str.lower().str.contains(query, na=False) |\
-           operators_df['Registro_ANS'].astype(str).str.lower().str.contains(query, na=False) |\
-           operators_df['CNPJ'].astype(str).str.lower().str.contains(query, na=False)
+    mask = (
+        operators_df['Razao_Social'].astype(str).str.lower().str.contains(query, na=False) |
+        operators_df['Nome_Fantasia'].astype(str).str.lower().str.contains(query, na=False) |
+        operators_df['Registro_ANS'].astype(str).str.lower().str.contains(query, na=False) |
+        operators_df['CNPJ'].astype(str).str.lower().str.contains(query, na=False)
+    )
     
     results = operators_df[mask].head(50)
+
+    if results.empty:
+        raise HTTPException(status_code=404, detail="Nenhuma operadora encontrada")
     
-    # Converter resultados para lista de modelos Operadora
     operators = [
         Operadora(
             registro_ans=str(row['Registro_ANS']),
@@ -78,19 +86,17 @@ async def buscar_operadoras(nome: str = Query(None)):
     if not nome:
         return []
     
-    # Converter consulta de busca para minúsculas para pesquisa sem distinção entre maiúsculas e minúsculas
     query = nome.lower()
     
-    # Pesquisar em colunas relevantes
-    # Converter colunas para tipo string antes de aplicar operações de string
-    mask = operators_df['Razao_Social'].astype(str).str.lower().str.contains(query, na=False) |\
-           operators_df['Nome_Fantasia'].astype(str).str.lower().str.contains(query, na=False) |\
-           operators_df['Registro_ANS'].astype(str).str.lower().str.contains(query, na=False) |\
-           operators_df['CNPJ'].astype(str).str.lower().str.contains(query, na=False)
+    mask = (
+        operators_df['Razao_Social'].astype(str).str.lower().str.contains(query, na=False) |
+        operators_df['Nome_Fantasia'].astype(str).str.lower().str.contains(query, na=False) |
+        operators_df['Registro_ANS'].astype(str).str.lower().str.contains(query, na=False) |
+        operators_df['CNPJ'].astype(str).str.lower().str.contains(query, na=False)
+    )
     
     results = operators_df[mask].head(50)
     
-    # Converter resultados para lista de modelos Operadora
     operators = [
         Operadora(
             registro_ans=str(row['Registro_ANS']),
