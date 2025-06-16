@@ -1,94 +1,66 @@
-# Teste 04: API
+# 🚀 Sistema de Processamento de Dados ANS
 
-Este projeto consiste em um sistema para coleta, processamento e visualização de dados de operadoras de saúde da ANS (Agência Nacional de Saúde Suplementar). O sistema é dividido em backend (Python/FastAPI) e frontend (Vue.js).
+Sistema para coleta, processamento e análise de dados da ANS, utilizando técnicas de Web Scraping, transformação de dados e APIs para disponibilização das informações.
 
-## Configuração do Ambiente
+## 📑 Visão Geral
 
-### Backend
+Este projeto consiste em quatro implementações principais, cada uma focando em diferentes aspectos do processamento de dados:
 
-1. **Criar e ativar ambiente virtual Python**
+1. **Web Scraping**: Coleta automatizada de documentos da ANS
+2. **Transformação de Dados**: Processamento e estruturação dos dados coletados
+3. **Operações de Banco de Dados**: Armazenamento e análise de dados das operadoras de saúde
+4. **API & Interface**: Interface web para visualização e busca de dados
 
-**Windows:**
-```bash
-python -m venv venv
-venv\Scripts\activate
-# ou
-.\venv\Scripts\activate.ps1 (PowerShell)
+## 🛠️ Stack Tecnológica
+
+O projeto foi desenvolvido utilizando Python, devido à sua eficiência em manipulação de dados e web scraping.
+
+- **Backend**:
+    - Python 3.x
+    - FastAPI
+    - BeautifulSoup4
+    - Pandas
+    - MySQL
+    - PyPDF2
+    - pdfplumber
+- **Frontend**:
+    - Vue.js 3
+    - Axios
+    - Vite
+
+## 🌳 Estrutura do Projeto
+
 ```
+project/
+├── backend/
+│   ├── database/
+│   │   ├── create_tables.sql
+│   │   └── import_and_analyze.sql
+│   ├── api.py
+│   ├── check_csv.py
+│   ├── compressor.py
+│   ├── config.py
+│   ├── data_transformer.py
+│   ├── downloader.py
+│   ├── ftp_downloader.py
+│   ├── main.py
+│   ├── requirements.txt
+│   ├── run_api.py
+│   └── scraper.py
+├── frontend/
+│   ├── src/
+│   ├── index.html
+│   ├── package-lock.json
+│   ├── package.json
+│   └── vite.config.js
+├── images/
+│   └── operadoras_search.png
+├── .gitignore
+├── README.md
+├── main.py
+└── postman_collection.json
 
-**Linux/macOS:**
-```bash
-python3 -m venv venv
-source venv/bin/activate
 ```
-
-2. **Instalar dependências**
-```bash
-pip install -r backend/requirements.txt
-```
-
-3. **Configurar variáveis de ambiente**
-
-Crie um arquivo `.env` na raiz do projeto com o seguinte conteúdo:
-```
-BASE_URL=[Cole_url_aqui]
-OPERATORS_DATA_URL=[cole_url_aqui_operadoras_ativas]
-FINANCIAL_DATA_URL=[cole_url_aqui_demontracoes_contabeis]
-```
-
-### Frontend
-
-1. **Instalar dependências**
-```bash
-cd frontend
-npm install
-# ou
-yarn install
-```
-
-## Execução do Projeto
-
-### Backend
-
-1. **Executar o script principal para coleta de dados**
-
-Este script faz o download dos PDFs do site da ANS, dados financeiros e dados de operadoras ativas.
-
-```bash
-python main.py
-```
-
-2. **Iniciar o servidor API**
-
-```bash
-python backend/run_api.py
-```
-
-O servidor API estará disponível em: http://127.0.0.1:8000
-
-Endpoints disponíveis:
-- `/buscar?nome={termo}` - Busca operadoras pelo nome
-
-### Frontend
-
-```bash
-cd frontend
-npm run dev
-# ou
-yarn dev
-```
-
-O frontend estará disponível em: http://localhost:5173
-
-## Screenshots
-
-### Interface de Busca de Operadoras
-
-A imagem abaixo mostra a interface de busca de operadoras de saúde, onde é possível pesquisar por nome e visualizar informações como Registro ANS, CNPJ, Razão Social, Nome Fantasia e Modalidade.
-
-![Interface de Busca de Operadoras](./images/operadoras_search.png)
-
-## Estrutura do Projeto
 
 ### Backend
 
@@ -114,7 +86,6 @@ A imagem abaixo mostra a interface de busca de operadoras de saúde, onde é pos
 
 ### Diretórios de Dados
 
-- **dataset/**: Armazena os dados processados (CSV)
 - **pdfs/**: Armazena os PDFs baixados
 - **financial_data/**: Armazena os dados financeiros baixados
 - **operators_data/**: Armazena os dados de operadoras baixados
@@ -133,18 +104,195 @@ A imagem abaixo mostra a interface de busca de operadoras de saúde, onde é pos
 
 4. O frontend Vue.js consome a API e apresenta uma interface amigável para busca de operadoras
 
-## Tecnologias Utilizadas
+## 🚀 Começando
 
-### Backend
-- Python
-- FastAPI
-- BeautifulSoup4 (web scraping)
-- Pandas (processamento de dados)
-- FTPLib (download via FTP)
-- Requests (requisições HTTP)
+### Pré-requisitos
+
+- Python 3.x
+- Node.js & npm
+- MySQL
+
+### Instalação
+
+1. **Clone o repositório**
+    
+    ```bash
+    git clone git@github.com:jonasluis/intuitive-care.git
+    cd intuitive-care
+    
+    ```
+    
+2. **Configure o ambiente Python**
+    
+    ```bash
+    cd backend
+    python -m venv venv
+    
+    # Windows
+    .\\venv\\Scripts\\activate
+    
+    # Linux/macOS
+    source venv/bin/activate
+    
+    ```
+    
+3. **Instale as dependências Python**
+    
+    ```bash
+    # Instale as bibliotecas principais
+    pip install --only-binary :all: beautifulsoup4 charset-normalizer python-dotenv requests pandas  tabula-py openpyxl PyPDF2
+    
+    # Instale as dependências da API
+    pip install pdfplumber fastapi uvicorn
+    
+    
+    # Instale o conector MySQL
+    pip install mysql-connector-python
+    
+    ```
+    
+4. **Configure as variáveis de ambiente**
+Crie um arquivo `.env` com:
+    
+    ```
+    BASE_URL="[ANS_URL]"
+    OPERATORS_DATA_URL="[OPERATORS_URL]"
+    FINANCIAL_DATA_URL="[FINANCIAL_DATA_URL]"
+    
+    ``` 
+
+## 💻 Executando o Projeto
+
+### Coleta de Dados Backend
+
+Você pode executar diferentes partes do processo de coleta de dados individualmente ou todas de uma vez:
+
+1. **Apenas Web Scraping**
+    
+    ```bash
+    python main.py scrape
+    
+    ```
+    
+    Isso irá coletar PDFs do site da ANS. e compactar em um .zip
+    
+2. **Transformação de Dados**
+    
+    ```bash
+    python main.py transformar_dados
+    
+    ```
+    
+    Isso extrair dados da tabelas rol e eventos do pdf anexo 1 e compactar o csv gerado em um  Teste_Jonas_luis.zip.
+
+3. **Apenas Download de Dados Financeiros**
+    
+    ```bash
+    python main.py download-financial
+    
+    ```
+    Isso irá baixar dados dos ultimos 2 anos
+    
+    
+4. **Apenas Download de Dados das Operadoras**
+    
+    ```bash
+    python main.py download-operators
+    
+    ```
+    
+    Isso irá baixar dados das operadoras ativas.
+    
+5. **Executar Toda a Coleta de Dados**
+    
+    ```bash
+    python main.py all
+    
+    ```
+    
+    Isso irá executar todas as etapas acima em sequência.
+    
+
+### Servidor API
+
+Inicie o servidor API com:
+
+```bash
+python backend/run_api.py
+
+```
+
+A API estará disponível em `http://127.0.0.1:8000`
 
 ### Frontend
-- Vue.js 3
-- Vuetify (componentes UI)
-- Axios (requisições HTTP)
-- Vite (bundler)
+
+```bash
+cd frontend
+npm install
+npm run dev
+
+```
+
+Acesse a interface em `http://localhost:5173`
+
+## 🔍 Funcionalidades
+
+### 1. Web Scraping 
+
+- Coleta automatizada de PDFs do site da ANS
+- Identificação inteligente de documentos
+- Sistema robusto de download com mecanismo de retry
+- Verificação de integridade de arquivos
+- Compressão automatizada
+
+### 2. Transformação de Dados 
+
+- Extração de dados de PDFs
+- Reconhecimento de estrutura de tabelas
+- Limpeza e normalização de dados
+- Conversão para CSV
+- Compressão automatizada
+
+### 3. Operações de Banco de Dados 
+
+- Armazenamento de dados financeiros
+- Gerenciamento de informações das operadoras de saúde
+- Queries de análise de desempenho
+- Análise de tendências de mercado
+- Avaliações de conformidade
+
+### 4. API & Interface
+
+- Endpoints RESTful
+- Busca em tempo real de operadoras
+- Visualização de dados
+- Interface amigável
+- Otimização de respostas
+
+## 📊 Análise de Banco de Dados
+
+O sistema fornece queries analíticas para:
+
+- Top 10 operadoras por despesas (trimestral)
+- Top 10 operadoras por despesas (anual)
+- Análise de participação de mercado
+- Avaliação de tendências financeiras
+
+## 📱 Screenshots
+
+![](images/operadoras_search.png)
+
+## 🔌 API
+
+A documentação completa da API está disponível na coleção do Postman incluída no projeto (`postman_collection.json`).
+
+## 👨‍💻 Autor
+
+**Jonas Luis**
+
+- 📱 Telefone: 21 964655190
+- 💼 LinkedIn: [linkedin.com/in/jonasluisds/](https://linkedin.com/in/jonasluisds/)
+- 📧 Email: [jonasluis66@gmail.com](mailto:jonasluis66@gmail.com)
+
+
+
