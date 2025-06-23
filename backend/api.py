@@ -34,7 +34,7 @@ class Operadora(BaseModel):
 
 # Carregar os dados das operadoras
 base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-csv_path = os.path.join(base_dir, 'operators_data', 'Relatorio_cadop.csv')
+csv_path = os.path.join(base_dir, 'backend/operators_data', 'Relatorio_cadop.csv')
 operators_df = pd.read_csv(csv_path, sep=';', encoding='utf-8')
 
 # Normalizar texto para lidar com problemas de codificação

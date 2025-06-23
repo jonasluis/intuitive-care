@@ -21,7 +21,7 @@ def scrape_pdfs():
     compressor.create_zip()
 
 def transformar_dados():
-    pdf_path = os.path.join("pdfs", "Anexo_I_Rol_2021RN_465.2021_RN627L.2024.pdf")
+    pdf_path = os.path.join("pdfs", "Anexo_I_Rol_2021RN_465.2021_RN627L3.2024.pdf")
     output_csv = "dados_transformados.csv"
     output_zip = "Teste_Jonas_Luis.zip"
     transformer = PdfDataTransformer(pdf_path, output_csv, output_zip)

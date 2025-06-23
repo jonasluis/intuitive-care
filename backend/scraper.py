@@ -36,7 +36,7 @@ class Scraper:
                 self.url,
                 headers=headers,
                 timeout=30,  # Set timeout to 30 seconds
-                verify=True,  # Verify SSL certificates
+                verify=False,  # Verify SSL certificates
                 allow_redirects=True  # Follow redirects
             )
             response.raise_for_status()
